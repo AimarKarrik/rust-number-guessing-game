@@ -12,7 +12,13 @@ fn main() {
         std::io::stdin().read_line(&mut input).unwrap();
 
         // parse input to u8
-        let input: u8 = input.trim().parse().unwrap();
+        let input: u8 = match input.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Please enter a number!");
+                continue;
+            },
+        };
 
         if input == random_byte {
             println!("You guessed correctly!");
